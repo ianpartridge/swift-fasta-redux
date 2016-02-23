@@ -132,7 +132,9 @@ struct RandomFasta {
         Out.ct = lct
     }
     
-    mutating func make (desc: String, var a: [Freq], var n: Int) {
+    mutating func make (desc: String, a: [Freq], n: Int) {
+        var a = a
+        var n = n
         makeLookup(&a)
         
         Out.buf.appendContentsOf(desc)
@@ -147,8 +149,8 @@ struct RandomFasta {
 }
 
 struct RepeatFasta {
-    static func make(desc: String, alu: String, var n: Int) {
-        
+    static func make(desc: String, alu: String, n: Int) {
+        var n = n
         Out.buf.appendContentsOf(desc)
         Out.ct += desc.characters.count
         
