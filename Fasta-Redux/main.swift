@@ -8,8 +8,6 @@
 //  Swift port of Java #3 implementation
 //
 
-import Foundation
-
 let LINE_LENGTH = 60
 let OUT_BUFFER_SIZE = 256*1024
 let LOOKUP_SIZE = 4*1024
@@ -156,7 +154,7 @@ struct RepeatFasta {
         
         let len = alu.characters.count
         var buf = alu
-        buf.appendContentsOf(alu.substringToIndex(alu.startIndex.advancedBy(LINE_LENGTH)))
+        buf.appendContentsOf(alu[Range<String.CharacterView.Index>(start: alu.startIndex, end: alu.startIndex.advancedBy(LINE_LENGTH))])
         
         var pos = 0
         while (n > 0) {
@@ -164,7 +162,7 @@ struct RepeatFasta {
             Out.checkFlush()
             let startIndex = buf.startIndex.advancedBy(pos)
             let endIndex = startIndex.advancedBy(bytes)
-            let towrite = buf.substringWithRange(Range(start: startIndex, end: endIndex))
+            let towrite = buf[Range<String.CharacterView.Index>(start: startIndex, end: endIndex)]
             Out.buf.appendContentsOf(towrite)
             Out.buf.append(Character("\n"))
             Out.ct += bytes + 1
