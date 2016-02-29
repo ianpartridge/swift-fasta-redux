@@ -192,7 +192,7 @@ struct RepeatFasta {
     }
 }
 
-var n = 2500000
+var n = 25000000
 if Process.argc > 1 {
     n = Int(Process.arguments[1])!
 }
